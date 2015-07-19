@@ -11,20 +11,43 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <!-- コンパイラのJavaバージョン -->
+                    <source>1.8</source>
+                    <!-- プロジェクトのJavaバージョン -->
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
                 <!-- http://www.in-vitro.jp/blog/index.cgi/Maven/20060215_01.htm -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>App</mainClass>
+                            <mainClass>com.example.app.App</mainClass>
                             <!--<packageName>com.example</packageName>-->
-                            <!--<addClasspath>true</addClasspath>-->
+                            <addClasspath>true</addClasspath>
                             <!--<addExtensions>true</addExtensions>-->
-                            <!--<classpathPrefix>lib</classpathPrefix>-->
+                            <classpathPrefix>lib</classpathPrefix>
                         </manifest>
                     </archive>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -35,5 +58,16 @@
             <artifactId>mybatis</artifactId>
             <version>3.3.0</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.ibatis</groupId>-->
+            <!--<artifactId>ibatis-core</artifactId>-->
+            <!--<version>3.0</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.ibatis</groupId>-->
+            <!--<artifactId>ibatis-sqlmap</artifactId>-->
+            <!--<version>2.3.0</version>-->
+        <!--</dependency>-->
+
     </dependencies>
 </project>
