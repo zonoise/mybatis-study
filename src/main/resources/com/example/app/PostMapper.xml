@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.app.PostMapper">
+    <resultMap id="PostResult" type="com.example.app.Post" >
+        <result column="id" property="id" />
+        <result column="title" property="title"/>
+    </resultMap>
+    <select id="getEmp" resultMap="PostResult" parameterType="long" >
+        select id, title
+        from posts
+        where id = #{id}
+    </select>
+    <insert id="insert" parameterType="com.example.app.Post" >
+        insert into posts (id,title)
+        values (#{id,jdbcType=NUMERIC}, #{title,jdbcType=VARCHAR})
+    </insert>
+
+</mapper>
